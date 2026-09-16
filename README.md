@@ -1,72 +1,53 @@
-# Roblox Media Factory
+# Yandex Games Lab
 
-Automation-first Russian kids/family gaming media studio focused on **VK Видео + RUTUBE**.
+> Repository name is legacy. The active project is now a **Yandex Games HTML5 game experiment**, not a Roblox media factory.
 
 ## Business objective
 
-Build a low-touch content system where original gaming episodes are produced automatically, distributed on Russian video platforms, measured, and iterated based on recommendation and monetization signals.
+Build small browser-game hypotheses cheaply, publish them to Yandex Games, and use real platform metrics to decide **KILL / ITERATE / SCALE**.
 
-The first business model is intentionally simple:
+Current monetization model:
 
-**original videos → platform recommendations → views/watch time → platform revenue share**
+**Yandex recommendations → players → ad views / rewarded ads / later in-app purchases → RUB payouts**
 
-YouTube, bookmakers/casinos, affiliate offers, and a proprietary Roblox place are **out of scope for Phase 1**. They may be tested later only if the core content economics work.
+## Current hypothesis
 
-## Initial content thesis
+### `Купи склад: найди клад`
+A storage-auction / resale progression game inspired by proven loot, rarity, tycoon and trading loops, but adapted to the older Yandex Games audience.
 
-- Russian-language
-- family-safe / kids gaming entertainment
-- Roblox-first, with Minecraft as a later adjacent test
-- horizontal master episodes, initially ~2.5–5 minutes
-- strong story, clear characters, frequent visual/story events
-- original production only; no reuploads or copyrighted cartoon/TV footage
+Core loop:
 
-## Recommendation thesis
+`choose storage → bid against NPCs → reveal loot → appraise/repair → sell → upgrade → buy more valuable storage`
 
-We optimize for signals the platforms publicly describe:
+## Why this project is intentionally small
 
-### VK Видео
-- originality
-- viewer watch/dwell behavior
-- low skip behavior
-- completion / continued watching
-- subscription after viewing
-- returning audience
-- likes, comments, reposts and other positive interactions
-- semantic match between title, thumbnail, audio/video content and viewer interests
+The first build is an MVP, not a finished game. It exists to test whether the loop can retain real users before spending more engineering time.
 
-VK says its 2026 recommendation updates can surface original creators from their first publications regardless of community size.
+Do **not** build multiplayer, 3D worlds, complex backend infrastructure, social systems, clans, battle passes, live ops, hundreds of levels, or a portfolio generator in Phase 1.
 
-### RUTUBE
-- user actions: likes, shares, subscriptions, comments
-- viewing history and time spent watching
-- metadata relevance: title, description, category
-- views over time
-- channel-level horizontal-video metrics: views, watch time, viewing depth
+## Technical direction
 
-## Current phase
-
-**SPEC-001 — Russian horizontal pilot episode + reusable production pipeline**
-
-The previous short-form YouTube/TikTok prototype has been retired before implementation.
-
-## Operating model
-
-- Strategy/research: ChatGPT + owner strategic review
-- Engineering/execution: Codex
-- Source of truth: this repository
-- Owner involvement target: credentials/KYC and strategic approvals only
+- HTML5 browser game
+- TypeScript
+- lightweight DOM/Canvas approach; no heavy engine unless clearly justified
+- responsive desktop + mobile
+- Yandex Games SDK integrated behind a small adapter
+- game build must be publishable as a ZIP with `index.html` in the archive root
+- no required third-party login
+- local dev must work without Yandex SDK through a mock/fallback adapter
 
 ## Repository layout
 
-- `specs/episodes/` — approved episode specifications
-- `research/` — platform/recommendation notes
-- `src/` — reusable production automation
-- `content/` — declarative episode configs
-- `output/` — output manifests/links and lightweight deliverables
-- `analytics/` — experiment schema and later performance results
-- `PROJECT_STATE.md` — current task, constraints and next checkpoint
+- `specs/yandex-games/` — approved game specifications
+- `src/` — game source
+- `public/` — static assets
+- `data/` — items/storage/economy configuration
+- `tests/` — lightweight automated tests for economy/core logic
+- `dist/` — production build (generated)
+- `PROJECT_STATE.md` — current approved task and hard scope limits
 
-## Codex execution rule
+## Codex operating rule
 
-Always read `PROJECT_STATE.md` first. Execute only the currently approved spec. Make non-critical engineering decisions autonomously and document them. Do not expand scope into mass production, publishing automation, channel creation, paid APIs or additional platforms unless the current spec explicitly requests it.
+Always read `PROJECT_STATE.md` first, then execute only the currently approved spec. Make routine engineering decisions independently. Do not expand scope because an idea seems useful.
+
+The owner should only be needed later for Yandex developer-console actions, KYC/monetization details, and strategic approval after the MVP is playable.
